@@ -212,15 +212,14 @@ npm install
 Create a `.env` file in the root directory.
 
 ```env
-VITE_SUPABASE_URL=
 
-VITE_SUPABASE_ANON_KEY=
 
-GROQ_API_KEY=
+GROQ_API_KEY=your_groq_api_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_anon_key
+NEWS_API=your_newsapi_key
 
-NEWS_API_KEY=
 
-LOGO_API_KEY=
 ```
 
 ### 4. Start the frontend
