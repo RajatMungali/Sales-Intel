@@ -194,7 +194,7 @@ export default function LeadTable({ companies = [], onSelect }) {
   return (
     <div>
       {/* Export button */}
-      <div className="flex justify-end px-6 py-3 border-b border-gray-100">
+      <div className="flex justify-end px-4 sm:px-6 py-3 border-b border-gray-100">
         <button
           onClick={() => exportCSV(companies)}
           className="inline-flex items-center gap-1.5 text-xs font-medium border border-blue-200 text-gray-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors"
@@ -212,7 +212,7 @@ export default function LeadTable({ companies = [], onSelect }) {
           return (
             <div
               key={company.id || i}
-              className="px-6 py-5 hover:bg-gray-50 transition-colors cursor-pointer group"
+              className="px-4 sm:px-6 py-5 hover:bg-gray-50 transition-colors cursor-pointer group"
               onClick={() => onSelect(company)}
             >
               <div className="flex items-start gap-4">
@@ -220,7 +220,7 @@ export default function LeadTable({ companies = [], onSelect }) {
                 <CompanyLogo name={company.name} website={company.website} />
 
                 {/* Company Info */}
-                <div className="flex-1 min-w-0 grid grid-cols-[1fr_1fr_1fr_auto] gap-4 items-start">
+                <div className="flex-1 min-w-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] gap-4 items-start">
                   {/* Name + URL + tags */}
                   <div>
                     <div className="flex items-center gap-2">
@@ -288,11 +288,11 @@ export default function LeadTable({ companies = [], onSelect }) {
                   </div>
 
                   {/* Intent Score */}
-                  <div className="text-right min-w-[120px]">
+                  <div className="text-left sm:text-right min-w-0 lg:min-w-[120px]">
                     <p className="text-xs font-medium text-gray-400 mb-1.5">
                       Intent Score
                     </p>
-                    <div className="flex items-baseline justify-end gap-1.5 mb-1">
+                    <div className="flex items-baseline justify-start sm:justify-end gap-1.5 mb-1">
                       <span className="text-2xl font-bold text-gray-900">
                         {score}
                       </span>

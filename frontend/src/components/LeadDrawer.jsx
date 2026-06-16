@@ -100,11 +100,11 @@ function CompanyLogo({ name, website }) {
 
   if (!allFailed && fallbackSrcs.length > 0) {
     return (
-      <div className="w-12 h-12 rounded-xl overflow-hidden border border-gray-100 bg-white flex items-center justify-center flex-shrink-0">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-gray-100 bg-white flex items-center justify-center flex-shrink-0">
         <img
           src={fallbackSrcs[srcIndex]}
           alt={name}
-          className="w-10 h-10 object-contain"
+          className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
           onError={handleError}
         />
       </div>
@@ -113,7 +113,7 @@ function CompanyLogo({ name, website }) {
 
   return (
     <div
-      className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center font-bold text-base flex-shrink-0`}
+      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${color} flex items-center justify-center font-bold text-sm sm:text-base flex-shrink-0`}
     >
       {initials}
     </div>
@@ -160,14 +160,19 @@ export default function LeadDrawer({ lead, onClose }) {
         onClick={onClose}
       />
 
-      {/* Drawer */}
-      <aside className="fixed right-0 top-0 bottom-0 w-[380px] bg-white shadow-xl z-50 overflow-y-auto flex flex-col">
+      {/* Drawer — full-width sheet on mobile, 380px panel on sm+ */}
+      <aside className="fixed right-0 bottom-0 left-0 sm:left-auto sm:top-0 sm:bottom-0 sm:w-[380px] bg-white shadow-xl z-50 overflow-y-auto flex flex-col rounded-t-2xl sm:rounded-none max-h-[92dvh] sm:max-h-none">
+        {/* Drag handle — mobile only */}
+        <div className="flex justify-center pt-3 pb-1 sm:hidden">
+          <div className="w-10 h-1 rounded-full bg-gray-200" />
+        </div>
+
         {/* Header */}
-        <div className="p-5 border-b border-gray-100 flex items-start justify-between sticky top-0 bg-white z-10">
+        <div className="px-4 sm:px-5 py-3 sm:py-5 border-b border-gray-100 flex items-start justify-between sticky top-0 bg-white z-10">
           <div className="flex items-center gap-3">
             <CompanyLogo name={lead.name} website={lead.website} />
             <div>
-              <h2 className="font-semibold text-gray-900 text-base">
+              <h2 className="font-semibold text-gray-900 text-sm sm:text-base">
                 {lead.name}
               </h2>
               {lead.website && (
@@ -191,15 +196,17 @@ export default function LeadDrawer({ lead, onClose }) {
           </button>
         </div>
 
-        <div className="p-5 flex-1">
+        <div className="px-4 sm:px-5 py-4 sm:py-5 flex-1">
           {/* Meta rows */}
           {metaRows.length > 0 && (
-            <div className="mb-5">
+            <div className="mb-4 sm:mb-5">
               <table className="w-full text-sm">
                 <tbody>
                   {metaRows.map(({ label, value }) => (
                     <tr key={label}>
-                      <td className="py-1.5 text-gray-400 w-24">{label}</td>
+                      <td className="py-1.5 text-gray-400 w-20 sm:w-24">
+                        {label}
+                      </td>
                       <td className="py-1.5 text-gray-800 font-medium">
                         {value}
                       </td>
@@ -211,12 +218,14 @@ export default function LeadDrawer({ lead, onClose }) {
           )}
 
           {/* Intent Score */}
-          <div className="mb-5">
+          <div className="mb-4 sm:mb-5">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">
               Intent Score
             </p>
             <div className="flex items-baseline gap-2 mb-2">
-              <span className="text-4xl font-bold text-gray-900">{score}</span>
+              <span className="text-3xl sm:text-4xl font-bold text-gray-900">
+                {score}
+              </span>
               <span className="text-gray-400 text-sm">/100</span>
               {score >= 80 && (
                 <span className="flex items-center gap-1 text-xs font-medium text-red-600 bg-red-50 px-2 py-0.5 rounded-full">
@@ -236,7 +245,7 @@ export default function LeadDrawer({ lead, onClose }) {
 
           {/* Detected Triggers */}
           {signals.length > 0 && (
-            <div className="mb-5">
+            <div className="mb-4 sm:mb-5">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
                 Detected Triggers
               </p>
@@ -254,7 +263,7 @@ export default function LeadDrawer({ lead, onClose }) {
 
           {/* Why Now */}
           {lead.why_flagged && (
-            <div className="mb-5">
+            <div className="mb-4 sm:mb-5">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
                 Why Now
               </p>
@@ -266,7 +275,7 @@ export default function LeadDrawer({ lead, onClose }) {
 
           {/* Recommended Outreach Angle */}
           {lead.outreach_angle && (
-            <div className="mb-5">
+            <div className="mb-4 sm:mb-5">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
                 Recommended Outreach Angle
               </p>
@@ -278,7 +287,7 @@ export default function LeadDrawer({ lead, onClose }) {
         </div>
 
         {/* Footer CTA */}
-        <div className="p-5 border-t border-gray-100 sticky bottom-0 bg-white">
+        <div className="px-4 sm:px-5 py-4 sm:py-5 border-t border-gray-100 sticky bottom-0 bg-white">
           {lead.website && (
             <a
               href={
